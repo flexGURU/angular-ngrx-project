@@ -1,0 +1,53 @@
+{
+    "articles": [
+      {
+        "slug": "how-to-learn-angular",
+        "title": "How to Learn Angular",
+        "description": "A beginner-friendly guide to mastering Angular.",
+        "body": "Angular is a popular front-end framework...",
+        "tagList": ["angular", "frontend", "webdev"],
+        "createdAt": "2025-02-18T10:00:00.000Z",
+        "updatedAt": "2025-02-18T12:00:00.000Z",
+        "favorited": false,
+        "favoritesCount": 5,
+        "author": {
+          "username": "john_doe",
+          "bio": "Frontend developer and tech writer.",
+          "image": "https://randomuser.me/api/portraits/men/1.jpg"
+        }
+      },
+      {
+        "slug": "understanding-javascript-closures",
+        "title": "Understanding JavaScript Closures",
+        "description": "A deep dive into closures in JavaScript.",
+        "body": "Closures allow functions to retain access to variables...",
+        "tagList": ["javascript", "closures", "functional"],
+        "createdAt": "2025-02-17T09:30:00.000Z",
+        "updatedAt": "2025-02-17T11:45:00.000Z",
+        "favorited": true,
+        "favoritesCount": 12,
+        "author": {
+          "username": "jane_smith",
+          "bio": "JavaScript enthusiast and educator.",
+          "image": "https://randomuser.me/api/portraits/women/2.jpg"
+        }
+      },
+      {
+        "slug": "why-tailwind-css-is-popular",
+        "title": "Why Tailwind CSS is Popular",
+        "description": "Exploring the rise of utility-first CSS frameworks.",
+        "body": "Tailwind CSS has gained traction due to its...",
+        "tagList": ["css", "tailwind", "webdesign"],
+        "createdAt": "2025-02-16T15:00:00.000Z",
+        "updatedAt": "2025-02-16T18:20:00.000Z",
+        "favorited": false,
+        "favoritesCount": 8,
+        "author": {
+          "username": "dev_guru",
+          "bio": "Full-stack developer and UI/UX enthusiast.",
+          "image": "https://randomuser.me/api/portraits/men/3.jpg"
+        }
+      }
+    ]
+  }
+  
