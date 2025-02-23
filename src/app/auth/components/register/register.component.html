@@ -22,20 +22,22 @@
           formControlName="username"
           class="p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-0"
         />
-        <input
-          type="text"
-          placeholder="Email"
-          formControlName="email"
-          class="p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-0"
-        />
+
         <input
           type="password"
           placeholder="Password"
           formControlName="password"
           class="p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-0"
         />
-        <button *ngIf="!(isSubmitting$ | async)" class="btn focus:ring-amber-200">Sign Up</button>
+        @if(!(isSubmitting$ | async)) {
+        <button class="btn focus:ring-amber-200">Sign Up</button>
+        }
       </form>
     </div>
+
   </div>
 </div>
+
+<fieldset>
+  <legend>dele</legend>
+</fieldset>

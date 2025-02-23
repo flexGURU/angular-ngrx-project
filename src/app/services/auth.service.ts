@@ -9,13 +9,12 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(@Inject('API_URL') private baseUrl: UserConfig, private http: HttpClient) {
-  }
-
+  constructor(
+    @Inject('API_URL') private baseUrl: UserConfig,
+    private http: HttpClient
+  ) {}
 
   register(request: RegisterRequestInterface): Observable<currentUser> {
-    return this.http.post<currentUser>(this.baseUrl.apiUrl, request)
+    return this.http.post<currentUser>(this.baseUrl.apiUrl, request);
   }
-
-
 }

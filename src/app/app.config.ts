@@ -6,7 +6,7 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { authFeatureKey, authReducer } from './auth/store/reducer';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 export interface UserConfig {
   apiUrl: string;
@@ -14,7 +14,7 @@ export interface UserConfig {
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(),
+    provideHttpClient(withFetch()),
     provideRouter(routes),
     provideClientHydration(),
     provideStore(),
@@ -26,6 +26,9 @@ export const appConfig: ApplicationConfig = {
       traceLimit: 75,
     }),
     provideState(authFeatureKey, authReducer),
-    { provide: 'API_URL', useValue: {apiUrl:  'http://localhost:3000/'} },
+    {
+      provide: 'API_URL',
+      useValue: { apiUrl: 'https://dummyjson.com/auth/login' },
+    },
   ],
 };

@@ -33,19 +33,18 @@ export class RegisterComponent {
     private authService: AuthService
   ) {
     this.formData = this.fb.nonNullable.group({
-      username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.min(6)]],
+      username: ['emilys', Validators.required],
+      password: ['emilyspass', [Validators.required, Validators.min(6)]],
     });
     this.authService;
   }
 
   onSubmit() {
     console.log(this.formData.getRawValue());
-    const request: RegisterRequestInterface = {
-      user: this.formData.getRawValue(),
-    };
-    this.store.dispatch(authActions.register({ request }));
-    this.authService.register(request);
+    const request: RegisterRequestInterface = this.formData.getRawValue();
+    // this.store.dispatch(authActions.register({ request }));
+    this.authService.register(request).subscribe((result) => {
+      console.log(result);
+    });
   }
 }
