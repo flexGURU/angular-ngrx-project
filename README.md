@@ -121,4 +121,4 @@ export const registerEffect = createEffect(
 
 ### Component Logic:
 
-[src\app\auth\components\register\register.component.ts](src\app\auth\components\register\register.component.ts)
+[src/app/auth/components/register/register.component.ts](src/app/auth/components/register/register.component.ts)
