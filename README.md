@@ -119,6 +119,9 @@ export const registerEffect = createEffect(
 );
 ```
 
-### Component Logic:
+
 
 [src/app/auth/components/register/register.component.ts](src/app/auth/components/register/register.component.ts)
+
+
+### Component Logic:![Screenshot 2025-02-25 195801](https://github.com/user-attachments/assets/ea9c6d1c-6cf2-41bc-8311-eaae100e3e03)
