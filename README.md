@@ -49,10 +49,7 @@ export const registerEffect = createEffect(
             return authActions.registerSuccess({ currentUser });
           }),
           catchError((error: HttpErrorResponse) => {
-            const backendError: BackendErrors = {
-                message: error.error?.message || 'An unexpected error occurred',
-            };
-            return of(authActions.registerFailure({ errors: backendError }));
+            return of(authActions.registerFailure({ errors: error.error.message }));
           })
         );
       })
