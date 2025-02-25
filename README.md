@@ -2,13 +2,14 @@
 
 ![state-management-lifecycle](https://github.com/user-attachments/assets/60b95eb4-04a1-41fb-b075-4bbeb6b2fa74)
 
-
 # Authentication Module with Angular and NgRx
 
 ## 📂 Project Overview
+
 This project is an authentication module built using Angular with state management handled by NgRx. The module provides a registration and login flow, including form validation, state management, and error handling. It is designed with a clean architecture and adheres to best practices for Angular and NgRx.
 
 ## 🚀 Features
+
 - User Registration
 - User Login
 - Reactive Forms with Validation
@@ -17,6 +18,7 @@ This project is an authentication module built using Angular with state manageme
 - Asynchronous Data Handling using Observables
 
 ## 🛠️ Technologies Used
+
 - **Angular** for front-end framework
 - **NgRx** for state management
 - **Reactive Forms** for form handling
@@ -25,12 +27,15 @@ This project is an authentication module built using Angular with state manageme
 - **Tailwind CSS** for styling
 
 ## 🧠 State Management
+
 State management in this project is handled using **NgRx**. The state is divided into **auth** state, which includes information about the authentication process such as:
+
 - **isSubmitting**: Boolean flag indicating form submission status
 - **backendErrors**: Holds error messages from API responses
 - **currentUser**: Stores the authenticated user's information
 
 ### 🔄 State Flow
+
 1. **Action Dispatch**: When a user submits the registration form, an **action** (`authActions.register`) is dispatched.
 2. **Effect Handling**: The **effect** (`registerEffect`) listens for this action, calls the **AuthService** to make the API request, and handles both **success** and **failure** scenarios.
 3. **Reducer Update**: Depending on the outcome, the **reducer** updates the store with either the authenticated **currentUser** or the **backendErrors**.
@@ -39,18 +44,55 @@ State management in this project is handled using **NgRx**. The state is divided
 ## 📦 Example Code
 
 ### Actions
+
 ```typescript
 export const authActions = createActionGroup({
-  source: 'auth',
+  source: "auth",
   events: {
     Register: props<{ request: RegisterRequestInterface }>(),
-    'Register Success': props<{ currentUser: currentUser }>(),
-    'Register Failure': props<{ errors: BackendErrors }>(),
+    "Register Success": props<{ currentUser: currentUser }>(),
+    "Register Failure": props<{ errors: BackendErrors }>(),
   },
 });
 ```
 
+### Reducer
 
+```typescript
+const initialState: AuthState = {
+  isSubmitting: false,
+  currentUser: null,
+  errors: null,
+  isLoggedIn: false,
+};
+
+const authFeature = createFeature({
+  name: "auth",
+  reducer: createReducer(
+    initialState,
+    on(authActions.register, (state) => ({
+      ...state,
+      isSubmitting: true,
+      errors: null,
+      isLoggedIn: false,
+    })),
+    on(authActions.registerSuccess, (state, action) => ({
+      ...state,
+      isSubmitting: false,
+      currentUser: action.currentUser,
+      isLoggedIn: true,
+    })),
+    on(authActions.registerFailure, (state, action) => ({
+      ...state,
+      isSubmitting: false,
+      errors: action.errors,
+      isLoggedIn: false,
+    }))
+  ),
+});
+
+export const { name: authFeatureKey, reducer: authReducer, selectIsSubmitting, selectCurrentUser, selectErrors, selectIsLoggedIn } = authFeature;
+```
 
 ### Register Effect
 
@@ -74,4 +116,9 @@ export const registerEffect = createEffect(
   {
     functional: true,
   }
-);```
+);
+```
+
+### Component Logic:
+
+[src\app\auth\components\register\register.component.ts](src\app\auth\components\register\register.component.ts)
