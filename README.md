@@ -37,7 +37,23 @@ State management in this project is handled using **NgRx**. The state is divided
 4. **Component Binding**: Components subscribe to **selectors** like `selectIsSubmitting` and `selectErrors` to reflect changes in the UI.
 
 ## 📦 Example Code
+
+### Actions
+```typescript
+export const authActions = createActionGroup({
+  source: 'auth',
+  events: {
+    Register: props<{ request: RegisterRequestInterface }>(),
+    'Register Success': props<{ currentUser: currentUser }>(),
+    'Register Failure': props<{ errors: BackendErrors }>(),
+  },
+});
+```
+
+
+
 ### Register Effect
+
 ```typescript
 export const registerEffect = createEffect(
   (actions$ = inject(Actions), authService = inject(AuthService)) => {
@@ -58,4 +74,4 @@ export const registerEffect = createEffect(
   {
     functional: true,
   }
-);
+);```
