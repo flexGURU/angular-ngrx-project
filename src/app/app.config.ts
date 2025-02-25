@@ -7,6 +7,9 @@ import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { authFeatureKey, authReducer } from './auth/store/reducer';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideEffects } from '@ngrx/effects';
+import * as authEffects  from './auth/store/effects';
+
 
 export interface UserConfig {
   apiUrl: string;
@@ -17,6 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     provideRouter(routes),
     provideClientHydration(),
+    provideEffects(authEffects),
     provideStore(),
     provideStoreDevtools({
       maxAge: 25,

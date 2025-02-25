@@ -12,20 +12,23 @@ import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { authActions } from '../../store/actions';
 import { RegisterRequestInterface } from '../../types/registerRequest.interface';
-import { selectIsSubmitting } from '../../store/reducer';
+import { selectErrors, selectIsLoggedIn, selectIsSubmitting } from '../../store/reducer';
 import { AuthState } from '../../types/authState.interface';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, CommonModule],
+  imports: [RouterLink, ReactiveFormsModule, CommonModule, FormsModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
   formData: FormGroup;
   isSubmitting$ = this.store.select(selectIsSubmitting);
+  backendErrors$ = this.store.select(selectErrors)
+  loggedIn$ = this.store.select(selectIsLoggedIn)
+  name: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -42,9 +45,6 @@ export class RegisterComponent {
   onSubmit() {
     console.log(this.formData.getRawValue());
     const request: RegisterRequestInterface = this.formData.getRawValue();
-    // this.store.dispatch(authActions.register({ request }));
-    this.authService.register(request).subscribe((result) => {
-      console.log(result);
-    });
+    this.store.dispatch(authActions.register({ request }));
   }
 }
